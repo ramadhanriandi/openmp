@@ -1,14 +1,12 @@
 .SILENT: $
 
 CC = gcc
-FILE= djikstra-omp
 
 # make compile
 compile: $
-	echo "Compiling ${FILE}..."
-	gcc -g -Wall -o out/${FILE} src/${FILE}.c -fopenmp \
-	echo "Successfully compiled ${FILE}! Executable at out/${FILE}."
+	echo "Compiling dijkstra_omp.c..."
+	gcc -g -Wall -o ./output/dijkstra_omp ./src/dijkstra_omp.c -fopenmp \
 
-# make run N={node_size} T={thread_count}
-run: ./out/${FILE}
-	./out/${FILE} ${N} ${T}\
+# make run T={thread_count}
+run: ./output/dijkstra_omp
+	./output/dijkstra_omp ${T}\
