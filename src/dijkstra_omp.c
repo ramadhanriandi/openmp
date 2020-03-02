@@ -4,14 +4,15 @@
 #include <omp.h>
 
 int main(int argc, char** argv[]) {
-  if (argc <= 2) {
-    printf("Need 2 arguments. For file name, size, number of threads\n");
+  if (argc <= 3) {
+    printf("Need 2 arguments. For file name, size, number of threads, and include serial or not\n");
     return 0;
   }
 
-  int n_node, thread_count;
+  int n_node, thread_count, use_serial;
   n_node = atoi(argv[1]);
   thread_count = atoi(argv[2]);
+  use_serial = atoi(argv[3]);
 
   // seed from 13517029
   int seed = 29;
@@ -28,21 +29,23 @@ int main(int argc, char** argv[]) {
 
   // Matrix initialization for graph
   init_graph(n_node, matrix_distance, seed);
-  print_matrix(n_node, matrix_distance);
 
+  if (use_serial == 1) {
+    // START SERIAL DIJKSTRA ALGORITHM
+    t_serial = clock();
+    serial_dijkstra(n_node, &matrix_distance, &final_matrix_distance);
+    t_serial = clock() - t_serial;
 
-  // START SERIAL DIJKSTRA ALGORITHM
-  t_serial = clock();
-  serial_dijkstra(n_node, &matrix_distance, &final_matrix_distance);
-  t_serial = clock() - t_serial;
+    double time_taken_serial = ((double)t_serial * 1000000) / (CLOCKS_PER_SEC);
 
-  double time_taken_serial = ((double)t_serial * 1000000)/(CLOCKS_PER_SEC);
-
-  // PRINT RESULT OF SERIAL DIJKSTRA ALGORITHM
-  printf("\n%s\n", "Final result for serial dijkstra algorithm: ");
-  print_matrix(n_node, final_matrix_distance);
-  printf("\n%s%f%s\n", "Time elapsed for serial dijkstra algorithm: ", time_taken_serial, " ms");
-  // END OF SERIAL DIJKSTRA ALGORITHM
+    // PRINT RESULT OF SERIAL DIJKSTRA ALGORITHM
+    //  printf("\n%s\n", "Final result for serial dijkstra algorithm: ");
+    //  print_matrix(n_node, final_matrix_distance);
+    printf("\n%s%2.f%s\n",
+           "Time elapsed for serial dijkstra algorithm: ", time_taken_serial,
+           " ms");
+    // END OF SERIAL DIJKSTRA ALGORITHM
+  }
 
   // START PARALLEL DIJKSTRA ALGORITHM USING OPENMP
   t_openmp = clock();
@@ -59,9 +62,9 @@ int main(int argc, char** argv[]) {
   double time_taken_openmp = ((double)t_openmp * 1000000)/(CLOCKS_PER_SEC);
 
   // PRINT RESULT OF SERIAL DIJKSTRA ALGORITHM
-  printf("\n%s\n", "Final result for serial dijkstra algorithm: ");
-  print_matrix(n_node, final_matrix_distance);
-  printf("\n%s%f%s\n", "Time elapsed for OpenMP parallel dijkstra algorithm: ", time_taken_openmp, " ms");
+  //  printf("\n%s\n", "Final result for serial dijkstra algorithm: ");
+  //  print_matrix(n_node, final_matrix_distance);
+  printf("\n%s%2.f%s\n", "Time elapsed for OpenMP parallel dijkstra algorithm: ", time_taken_openmp, " ms");
   print_matrix_to_file(n_node, final_matrix_distance);
   // END OF SERIAL DIJKSTRA ALGORITHM
   return 0;
@@ -94,6 +97,7 @@ void serial_dijkstra(int n_node, int (*matrix_distance)[n_node], int (*final_mat
       final_matrix_distance[k][i] = result[i];
     }
     k++;
+    printf("Serial | Node %d out of %d\n", k, n_node);
   }
 }
 
