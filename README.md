@@ -46,17 +46,23 @@ Kemampuan parallelisasi dapat meningkat seiring kemampuan mesin yang ditingkatka
 Kita menggunakan 2 thread karena disesuaikan dengan logical processor serta spesifikasi server yang digunakan. Penggunaan 2 thread mendukung kemampuan mesin sehingga kita mendapatkan hasil yang lebih optimal dibandingkan menggunakan jumlah thread lainnya seperti 4 atau 8.
 
 ### Pengukuran Kinerja untuk Tiap Kasus Uji Dibandingkan dengan Dijkstra Algorithm Serial
-https://gitlab.informatika.org/reyhankim/openmpi/-/raw/master/screenshots/serial_100.png
+Serial 100 Node     : 226.588 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_100.png)
 
-https://gitlab.informatika.org/reyhankim/openmpi/-/blob/master/screenshots/parallel_100.png
+Parallel 100 Node   : 119.251 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_100.png)
+
+Serial 500 Node     : 129.956.783 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_500.png)
+
+Parallel 500 Node   : 64.253.794 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_500.png)
+
+Serial 1000 Node    : 2.051.541.746 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_1000.png)
+
+Parallel 1000 Node  : 1.017.134.891 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_1000.png)
+
+Serial 3000 Node    : 
+
+Parallel 3000 Node  : 
 
 ### Analisis Perbandingan Kinerja Serial dan Parallel
 Pada umumnya, kinerja program parallel akan menghasilkan kinerja yang lebih baik daripada program serial. Namun pada percobaan tugas ini, hasil yang didapat dari program parallel tidak lebih baik daripada program serial yang telah dibuat.
 Kedua program menggunakan algoritma dijkstra yang sama namun perbedaaannya terletak pada bagaimana terdapat beberapa proses di program parallel dalam mengelola data.
 Hasil yang lebih buruk ini dapat disebabkan oleh kesalahan algoritma MPI atau kurang cocoknya fitur MPI yang digunakan dalam pembuatan proses parallel.
-
-Hasil contoh pengujian terhadap waktu elapsed:
-
-Parallel 100 : 222.552 ms
-
-Serial 100 : 185.857 ms
