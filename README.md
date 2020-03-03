@@ -63,6 +63,8 @@ Serial 3000 Node    :
 Parallel 3000 Node  : 
 
 ### Analisis Perbandingan Kinerja Serial dan Parallel
-Pada umumnya, kinerja program parallel akan menghasilkan kinerja yang lebih baik daripada program serial. Namun pada percobaan tugas ini, hasil yang didapat dari program parallel tidak lebih baik daripada program serial yang telah dibuat.
-Kedua program menggunakan algoritma dijkstra yang sama namun perbedaaannya terletak pada bagaimana terdapat beberapa proses di program parallel dalam mengelola data.
-Hasil yang lebih buruk ini dapat disebabkan oleh kesalahan algoritma MPI atau kurang cocoknya fitur MPI yang digunakan dalam pembuatan proses parallel.
+Berdasarkan pengukuran kinerja yang dilakukan untuk setiap kasus uji, dapat dianalisis sebagai berikut.
+*  Untuk setiap kasus uji, program yang dijalankan secara parallel menghasilkan elapsed time yang lebih sedikit
+*  Jumlah thread yang digunakan mepengaruhi hasil pengujian program yang dijalankan secara parallel
+*  Berdasarkan beberapa kali percobaan, jumlah thread yang optimal pada server yang digunakan adalah 2 thread
+*  Semakin banyak jumlah data yang digunakan, maka perbedaan kecepatan elapsed time parallel dan serial akan semakin besar 
