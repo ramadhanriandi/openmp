@@ -30,15 +30,20 @@ Berikut adalah laporan pengerjaan dari tugas ini.
 Pada pengerjaan tugas ini, dilakukan proses pencarian jarak terpendek dari setiap node ke semua node lainnya.
 Untuk mencari jarak terpendek dengan suatu source node tertentu, kita menggunakan algoritma dijkstra untuk melakukan penelusuran yang menghasilkan array yang berisi jarak terpendak source node tersebut ke semua node lainnya.
 Untuk mendapatkan matriks yang berisi jarak terpendek dari setiap node ke semua node lainnya, algoritma dijkstra yang diterapkan pada setiap node dijalankan secara parallel dan setiap hasil array jarak terpendek dari algoritma tersebut akan disatukan menjadi sebuah matriks.
-Kita menggunakan MPI Broadcast untuk mengirimkan data yang sama yaitu matriks yang berisi jarak terpendek dari setiap ke semua node lainnya. Matriks ini akan dikirimkan ke seluruh proses yang ada. Broadcast menggunakan jalur komunikasi berbentuk pohon.
+Kita menggunakan OpenMP untuk melakukan shared memory programming secara parallel. Dengan OpenMP, setiap thread dapat mengakses semua memory yang tersedia. 
+Setelah graph berhasil di-generate menggunakan seed yang diberikan, dilakukan perhitungan waktu proses untuk serial dan parallel.
+Serial menggunakan fungsi clock() sedangkan parallel menggunakan fungsi omp_get_wtime().
+Agar program dapat bekerja secara parallel, diberikan sebuah OpenMP pragma yaitu `#pragma omp parallel num_threads(<thread_count>)`.
 
 ### Analisis Solusi yang Diberikan
-Berdasarkan solusi yang digunakan, kita menghasilkan kinerja yang lebih ringan dengan membagi proses untuk ditangani oleh beberapa thread.
+Berdasarkan solusi yang digunakan, kita menghasilkan kinerja yang lebih ringan dengan melakukan parallelisasi data untuk ditangani oleh beberapa thread.
+Hal ini dibuktikan dengan hasil pengujian di mana ketika dijkstra dijalankan secara parallel memiliki elapsed-time yang lebih kecil dibandingkan serial.
 Untuk menghasilkan solusi yang lebih baik, dapat dilakukan dengan cara mengoptimasi algoritma Dijkstra yang telah dibuat.
-Selain itu kita dapat menggunakan fitur MPI yang lebih cocok seperti Scatter dan Gather untuk melakukan penyebaran dan pengumpulan data sehingga kinerja yang dihasilkan lebih baik.
+Selain itu kita dapat mengalokasikan memori secara dinamis agar hasil pengerjaan menjadi lebih ringan. Solusi yang saat ini diterapkan belum menerapkan hal tersebut.
+Kemampuan parallelisasi dapat meningkat seiring kemampuan mesin yang ditingkatkan sehingga jumlah thread yang optimal dapat lebih banyak.
 
 ### Jumlah Thread yang Digunakan
-Kita menggunakan 4 thread karena disesuaikan dengan logical processor serta spesifikasi laptop atau server yang digunakan.
+Kita menggunakan 2 thread karena disesuaikan dengan logical processor serta spesifikasi server yang digunakan. Penggunaan 2 thread mendukung kemampuan mesin sehingga kita mendapatkan hasil yang lebih optimal dibandingkan menggunakan jumlah thread lainnya seperti 4 atau 8.
 
 ### Pengukuran Kinerja untuk Tiap Kasus Uji Dibandingkan dengan Dijkstra Algorithm Serial
 https://gitlab.informatika.org/reyhankim/openmpi/-/raw/master/screenshots/serial_100.png
