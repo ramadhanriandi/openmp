@@ -6,12 +6,10 @@
 void openmp_dijkstra(int n_node, int (*matrix_distance)[n_node], int (*final_matrix_distance)[n_node]);
 void serial_dijkstra(int n_node, int (*matrix_distance)[n_node], int (*final_matrix_distance)[n_node]);
 void init_graph(int n_node, int (*matrix)[n_node], int seed);
-void print_matrix(int n_node, int (*matrix)[n_node]);
 void fill_array(int n_node, int array[], int value);
 int is_visited(int n_node, int visited[], int checked_value);
 int find_alternative(int n_node, int visited[], int result[], int current_idx);
 void dijkstra(int n_node, int (*matrix)[n_node], int source, int result[]);
-void print_solution(int n_node, int result[]);
 void print_matrix_to_file(int n_node, int (*matrix)[n_node]);
 
 int main(int argc, char** argv[]) {
@@ -129,15 +127,6 @@ void init_graph(int n_node, int (*matrix)[n_node], int seed) {
   }
 }
 
-void print_matrix(int n_node, int (*matrix)[n_node]) {
-  for (int i = 0; i < n_node; i++) {
-    for (int j = 0; j < n_node; j++) {
-      printf("%d ", matrix[i][j]);
-    }
-    printf("\n");
-  }
-}
-
 void fill_array(int n_node, int array[], int value) {
   for (int i = 0; i < n_node; i++) {
     array[i] = value;
@@ -220,12 +209,6 @@ void dijkstra(int n_node, int (*matrix)[n_node], int source, int result[]) {
     global_min = 999;
     i++;
   }
-}
-
-void print_solution(int n_node, int result[]) {
-  printf("Vertex \t\t Distance from Source\n");
-  for (int i = 0; i < n_node; i++)
-    printf("%d \t\t %d\n", i, result[i]);
 }
 
 void print_matrix_to_file(int n_node, int (*matrix)[n_node]) {
