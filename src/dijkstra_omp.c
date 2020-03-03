@@ -3,6 +3,17 @@
 #include <time.h>
 #include <omp.h>
 
+void openmp_dijkstra(int n_node, int (*matrix_distance)[n_node], int (*final_matrix_distance)[n_node]);
+void serial_dijkstra(int n_node, int (*matrix_distance)[n_node], int (*final_matrix_distance)[n_node]);
+void init_graph(int n_node, int (*matrix)[n_node], int seed);
+void print_matrix(int n_node, int (*matrix)[n_node]);
+void fill_array(int n_node, int array[], int value);
+int is_visited(int n_node, int visited[], int checked_value);
+int find_alternative(int n_node, int visited[], int result[], int current_idx);
+void dijkstra(int n_node, int (*matrix)[n_node], int source, int result[]);
+void print_solution(int n_node, int result[]);
+void print_matrix_to_file(int n_node, int (*matrix)[n_node]);
+
 int main(int argc, char** argv[]) {
   if (argc <= 3) {
     printf("Need 2 arguments. For file name, size, number of threads, and include serial or not\n");
