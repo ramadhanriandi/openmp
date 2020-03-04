@@ -46,21 +46,21 @@ Kemampuan parallelisasi dapat meningkat seiring kemampuan mesin yang ditingkatka
 Kita menggunakan 2 thread karena disesuaikan dengan logical processor serta spesifikasi server yang digunakan. Penggunaan 2 thread mendukung kemampuan mesin sehingga kita mendapatkan hasil yang lebih optimal dibandingkan menggunakan jumlah thread lainnya seperti 4 atau 8.
 
 ### Pengukuran Kinerja untuk Tiap Kasus Uji Dibandingkan dengan Dijkstra Algorithm Serial
-Serial 100 Node     : 226.588 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_100.png)
+Serial 100 Node     : 14.485 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_100.png)
 
-Parallel 100 Node   : 119.251 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_100.png)
+Parallel 100 Node   : 26.456 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_100.png)
 
-Serial 500 Node     : 129.956.783 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_500.png)
+Serial 500 Node     : 1.662.129 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_500.png)
 
-Parallel 500 Node   : 64.253.794 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_500.png)
+Parallel 500 Node   : 1.698.371 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_500.png)
 
-Serial 1000 Node    : 2.051.541.746 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_1000.png)
+Serial 1000 Node    : 13.414.886 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_1000.png)
 
-Parallel 1000 Node  : 1.017.134.891 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_1000.png)
+Parallel 1000 Node  : 13.361.808 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_1000.png)
 
-Serial 3000 Node    : 
+Serial 3000 Node    : 356.922.756 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/serial_3000.png)
 
-Parallel 3000 Node  : 
+Parallel 3000 Node  : 358.126.077 mikroseken (https://gitlab.informatika.org/reyhankim/openmp/-/blob/master/output/screenshot/parallel_3000.png)
 
 ### Analisis Perbandingan Kinerja Serial dan Parallel
 Berdasarkan pengukuran kinerja yang dilakukan untuk setiap kasus uji, dapat dianalisis sebagai berikut.
